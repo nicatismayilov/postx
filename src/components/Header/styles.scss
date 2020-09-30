@@ -1,0 +1,26 @@
+.header {
+  padding: 5px 0;
+  background-color: #1a1f3c;
+
+  &__link {
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+
+    display: inline-block;
+    padding: 15px 25px;
+    border-bottom: 1px solid #6672bf;
+
+    transition: all 150ms;
+
+    &:not(:last-of-type) {
+      margin-right: 15px;
+    }
+
+    &:hover {
+      background-color: #222954;
+    }
+  }
+}

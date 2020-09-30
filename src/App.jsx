@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
-
 import { connect } from "react-redux";
+import { Switch, Route } from "react-router-dom";
 
 import { fetchPostsStart } from "store/posts/actions";
+
+import Header from "components/Header";
+
+import Home from "views/Home";
 
 import "./styles/index.scss";
 
@@ -14,11 +18,12 @@ const App = (props) => {
 	}, [fetchPosts]);
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-5">col 5</div>
-				<div className="col-md-6">col 6</div>
-			</div>
+		<div className="app">
+			<Header />
+
+			<Switch>
+				<Route exact path="/" component={Home} />
+			</Switch>
 		</div>
 	);
 };

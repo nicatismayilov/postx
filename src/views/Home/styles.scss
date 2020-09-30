@@ -1,0 +1,18 @@
+.home {
+  display: flex;
+  justify-content: center;
+  padding-top: 250px;
+  background-color: #f2d9b3;
+  height: 100%;
+
+  font-family: sans-serif;
+
+  &__title {
+    font-size: 50px;
+    margin-bottom: 30px;
+  }
+
+  &__title-sub {
+    font-size: 25px;
+  }
+}
