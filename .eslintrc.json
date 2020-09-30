@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": ["react-app", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 11
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "warn",
+      {
+        "printWidth": 125,
+        "trailingComma": "es5",
+        "semi": true,
+        "jsxSingleQuote": false,
+        "singleQuote": false,
+        "useTabs": true,
+        "endOfLine": "auto"
+      }
+    ]
+  }
+}
