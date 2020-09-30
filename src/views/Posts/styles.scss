@@ -1,9 +1,32 @@
 .posts-page {
   padding-top: 50px;
 
-  &__title {
+  & > .container > .d-flex {
     margin-bottom: 15px;
+  }
+
+  &__title {
     font-size: 30px;
+  }
+
+  &__btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    transition: all 150ms;
+
+    &:hover {
+      background-color: #e1dfdf;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__content > .row > .col-3 {

@@ -28,6 +28,13 @@ const reducer = (state = init, action) => {
 				loading: false,
 			};
 
+		case actionTypes.ADD_POST_SUCCESS:
+			const { id } = action.payload;
+			return {
+				...state,
+				posts: { ...state.posts, [id]: action.payload },
+			};
+
 		default:
 			return state;
 	}

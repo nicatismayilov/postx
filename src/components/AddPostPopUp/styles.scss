@@ -1,0 +1,72 @@
+.add-post-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #00000033;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-post-card {
+  background-color: #fff;
+  border-radius: 15px;
+
+  transform-origin: center;
+  animation: popup 300ms cubic-bezier(1, -0.08, 0.56, 0.7);
+
+  &__title {
+    padding: 12px 20px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__content {
+    padding: 20px;
+  }
+}
+
+.add-post-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 20vw;
+
+  &__group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 70%;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 15px;
+    padding: 5px 10px;
+  }
+
+  &__label {
+    font-size: 12px;
+    margin-left: 5px;
+  }
+
+  &__btn {
+    padding: 5px 20px;
+    cursor: pointer;
+  }
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
