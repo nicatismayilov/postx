@@ -8,6 +8,7 @@ import Header from "components/Header";
 
 import Home from "views/Home";
 import Posts from "views/Posts";
+import PostView from "views/PostView";
 
 import "./styles/index.scss";
 
@@ -16,7 +17,7 @@ const App = (props) => {
 
 	useEffect(() => {
 		fetchPosts();
-	}, [fetchPosts]);
+	});
 
 	return (
 		<div className="app">
@@ -25,6 +26,7 @@ const App = (props) => {
 			<Switch>
 				<Route exact path="/" component={Home} />
 				<Route exact path="/posts" component={Posts} />
+				<Route path="/posts/:id" component={PostView} />
 			</Switch>
 		</div>
 	);

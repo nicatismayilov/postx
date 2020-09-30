@@ -35,6 +35,14 @@ const reducer = (state = init, action) => {
 				posts: { ...state.posts, [id]: action.payload },
 			};
 
+		case actionTypes.DELETE_POST_SUCCESS:
+			const newPosts = state.posts;
+			newPosts[action.payload] = undefined;
+			return {
+				...state,
+				posts: newPosts,
+			};
+
 		default:
 			return state;
 	}

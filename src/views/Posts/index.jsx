@@ -39,7 +39,7 @@ const renderPosts = (posts) => {
 		<div className="row">
 			{posts.map((post, idx) => (
 				<div key={idx} className="col-3">
-					<PostOverview title={post.title} body={post.body} />
+					<PostOverview title={post.title} body={post.body} id={post.id} />
 				</div>
 			))}
 		</div>
