@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 
 const init = {
-	posts: [],
+	posts: {},
 	loading: false,
 	err: "",
 };

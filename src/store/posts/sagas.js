@@ -6,6 +6,8 @@ import { fetchPostsSuccess, fetchPostsFailure } from "./actions";
 
 import { getAllPosts } from "services/postsService";
 
+import convertArrayToMap from "utils/convertArrayToMap";
+
 export function* fetchPostsStart() {
 	yield takeLatest(FETCH_POSTS_START, fetchPostsStartAsync);
 }
@@ -13,7 +15,7 @@ export function* fetchPostsStart() {
 function* fetchPostsStartAsync() {
 	try {
 		const { data } = yield call(getAllPosts);
-		yield put(fetchPostsSuccess(data));
+		yield put(fetchPostsSuccess(convertArrayToMap(data)));
 	} catch (err) {
 		yield put(fetchPostsFailure(err.message));
 	}

@@ -5,7 +5,7 @@ import { createStructuredSelector } from "reselect";
 import { selectPosts, selectPostsLoading } from "store/posts/selectors";
 
 import Spinner from "components/Spinner";
-import PostOverview from "components/PostsOverview";
+import PostOverview from "components/PostOverview";
 
 import "./styles.scss";
 
