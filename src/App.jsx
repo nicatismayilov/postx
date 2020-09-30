@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import { fetchPostsStart } from "store/posts/actions";
 
+import "./styles/index.scss";
+
 const App = (props) => {
 	const { fetchPosts } = props;
 
@@ -11,7 +13,14 @@ const App = (props) => {
 		fetchPosts();
 	}, [fetchPosts]);
 
-	return <div className="App">Product App Demo</div>;
+	return (
+		<div className="container">
+			<div className="row">
+				<div className="col-md-5">col 5</div>
+				<div className="col-md-6">col 6</div>
+			</div>
+		</div>
+	);
 };
 
 const mapDispatchToProps = (dispatch) => ({
