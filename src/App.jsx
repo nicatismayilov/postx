@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const App = () => {
+import { connect } from "react-redux";
+
+import { fetchPostsStart } from "store/posts/actions";
+
+const App = (props) => {
+	const { fetchPosts } = props;
+
+	useEffect(() => {
+		fetchPosts();
+	}, [fetchPosts]);
+
 	return <div className="App">Product App Demo</div>;
 };
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+	fetchPosts: () => dispatch(fetchPostsStart()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
