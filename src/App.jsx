@@ -7,6 +7,7 @@ import { fetchPostsStart } from "store/posts/actions";
 import Header from "components/Header";
 
 import Home from "views/Home";
+import Posts from "views/Posts";
 
 import "./styles/index.scss";
 
@@ -23,6 +24,7 @@ const App = (props) => {
 
 			<Switch>
 				<Route exact path="/" component={Home} />
+				<Route exact path="/posts" component={Posts} />
 			</Switch>
 		</div>
 	);
