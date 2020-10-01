@@ -16,7 +16,7 @@ const PostView = (props) => {
 	useEffect(() => {
 		if (!post) {
 			history.push(match.url.split(`/${match.params.id}`)[0]);
-			eventBus.dispatch("post deleted", { type: "success", text: "Post was deleted succesfully" });
+			eventBus.dispatch("success", "Post was deleted succesfully");
 		}
 	}, [post, history, match]);
 

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 
+import eventBus from "eventBus";
+
 import { addPostStart } from "store/posts/actions";
 
 import "./styles.scss";
@@ -30,7 +32,7 @@ const AddPostPopUp = (props) => {
 		e.preventDefault();
 
 		if (!title || !body) {
-			alert("fill fields");
+			eventBus.dispatch("warning", "Please fill the required fields");
 			return;
 		}
 
@@ -41,6 +43,7 @@ const AddPostPopUp = (props) => {
 		};
 
 		addPost(post);
+		eventBus.dispatch("success", "Post was created succesfully");
 		closePopUp();
 	};
 

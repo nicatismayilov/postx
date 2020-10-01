@@ -25,9 +25,18 @@ const App = (props) => {
 	});
 
 	useEffect(() => {
-		eventBus.on("post deleted", (info) => {
-			const { type, text } = info;
-			setAlertInfo({ type, text });
+		eventBus.on("success", (text) => {
+			setAlertInfo({ type: "success", text });
+			setAlertActive(true);
+		});
+
+		eventBus.on("warning", (text) => {
+			setAlertInfo({ type: "warning", text });
+			setAlertActive(true);
+		});
+
+		eventBus.on("error", (text) => {
+			setAlertInfo({ type: "error", text });
 			setAlertActive(true);
 		});
 	}, []);
