@@ -1,4 +1,4 @@
-This project is to display a demo version of Product Management App
+This project is to display a demo version of a CRUD App (create, read, update, delete)
 
 ## To Run this Project locally
 
