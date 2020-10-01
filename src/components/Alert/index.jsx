@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
+
+import debounce from "utils/debounce";
 
 import successIcon from "assets/img/success.svg";
 import infoIcon from "assets/img/info.svg";
@@ -12,6 +14,10 @@ import "./styles.scss";
 const Alert = (props) => {
 	const { type, text, active } = props;
 	const { onDeactivate } = props;
+
+	useEffect(() => {
+		if (active) debounce(onDeactivate, 1500)();
+	}, [active, onDeactivate]);
 
 	return ReactDOM.createPortal(
 		<div className={`alert alert--${type} ${(active && "alert--active") || ""}`}>
