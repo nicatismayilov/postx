@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
 
 import eventBus from "eventBus";
 
 import { fetchPostsStart } from "store/posts/actions";
+
+import { selectPostsError } from "store/posts/selectors";
 
 import Home from "views/Home";
 import Posts from "views/Posts";
@@ -17,6 +20,7 @@ import Alert from "components/Alert";
 import "./styles/index.scss";
 
 const App = (props) => {
+	const { postsErr } = props;
 	const { fetchPosts } = props;
 
 	const [alertActive, setAlertActive] = useState(false);
@@ -43,6 +47,10 @@ const App = (props) => {
 	}, []);
 
 	useEffect(() => {
+		postsErr && eventBus.dispatch("error", postsErr);
+	}, [postsErr]);
+
+	useEffect(() => {
 		fetchPosts();
 	}, [fetchPosts]);
 
@@ -65,8 +73,12 @@ const App = (props) => {
 	);
 };
 
+const mapStateToProps = createStructuredSelector({
+	postsErr: selectPostsError,
+});
+
 const mapDispatchToProps = (dispatch) => ({
 	fetchPosts: () => dispatch(fetchPostsStart()),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

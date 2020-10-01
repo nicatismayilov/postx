@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import { selectPosts, selectPostsLoading } from "store/posts/selectors";
+import { selectPosts, selectGetPostsLoading } from "store/posts/selectors";
 
 import Spinner from "components/Spinner";
 import PostOverview from "components/PostOverview";
@@ -51,7 +51,7 @@ const renderPosts = (posts) => {
 
 const mapStateToProps = createStructuredSelector({
 	posts: selectPosts,
-	loading: selectPostsLoading,
+	loading: selectGetPostsLoading,
 });
 
 export default connect(mapStateToProps)(Posts);

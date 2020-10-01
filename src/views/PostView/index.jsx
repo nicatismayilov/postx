@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import eventBus from "eventBus";
-
 import { deletePostStart } from "store/posts/actions";
 
 import { selectPost } from "store/posts/selectors";
@@ -16,7 +14,6 @@ const PostView = (props) => {
 	useEffect(() => {
 		if (!post) {
 			history.push(match.url.split(`/${match.params.id}`)[0]);
-			eventBus.dispatch("success", "Post was deleted succesfully");
 		}
 	}, [post, history, match]);
 

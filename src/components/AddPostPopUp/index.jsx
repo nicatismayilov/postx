@@ -28,7 +28,7 @@ const AddPostPopUp = (props) => {
 		}
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		if (!title || !body) {
@@ -42,8 +42,7 @@ const AddPostPopUp = (props) => {
 			userId: 1,
 		};
 
-		addPost(post);
-		eventBus.dispatch("success", "Post was created succesfully");
+		await addPost(post);
 		closePopUp();
 	};
 

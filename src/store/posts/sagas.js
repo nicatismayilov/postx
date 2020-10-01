@@ -1,5 +1,7 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 
+import eventBus from "eventBus";
+
 import { FETCH_POSTS_START, ADD_POST_START, DELETE_POST_START } from "./actionTypes";
 
 import {
@@ -29,27 +31,29 @@ export function* deletePostStart() {
 
 function* fetchPostsStartAsync() {
 	try {
-		const { data } = yield call(getAllPosts);
-		yield put(fetchPostsSuccess(convertArrayToMap(data)));
+		const res = yield call(getAllPosts);
+		yield put(fetchPostsSuccess(convertArrayToMap(res.data)));
 	} catch (err) {
-		yield put(fetchPostsFailure(err.message));
+		yield put(fetchPostsFailure("Error occured while loading posts"));
 	}
 }
 
 function* addPostAsync({ payload }) {
 	try {
-		const data = yield call(addPost, payload);
-		yield put(addPostSuccess(data));
+		const res = yield call(addPost, payload);
+		yield put(addPostSuccess(res.data));
+		eventBus.dispatch("success", "Post was created succesfully");
 	} catch (err) {
-		yield put(addPostFailure(err.message));
+		yield put(addPostFailure("Error occured while creating a new post"));
 	}
 }
 
 function* deletePostAsync({ payload }) {
 	try {
-		const id = yield call(deletePost, payload);
-		yield put(deletePostSuccess(id));
+		yield call(deletePost, payload);
+		yield put(deletePostSuccess(payload));
+		eventBus.dispatch("success", "Post was deleted succesfully");
 	} catch (err) {
-		yield put(deletePostFailure(err.message));
+		yield put(deletePostFailure("Error occured while deleting the post"));
 	}
 }

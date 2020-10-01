@@ -29,6 +29,21 @@ export const addPostFailure = (err) => ({
 	payload: err,
 });
 
+export const updatePostStart = (post) => ({
+	type: actionTypes.UPDATE_POST_START,
+	payload: post,
+});
+
+export const updatePostSuccess = (post) => ({
+	type: actionTypes.UPDATE_POST_SUCCESS,
+	payload: post,
+});
+
+export const updatePostFailure = (err) => ({
+	type: actionTypes.UPDATE_POST_FAILURE,
+	payload: err,
+});
+
 export const deletePostStart = (id) => ({
 	type: actionTypes.DELETE_POST_START,
 	payload: id,
