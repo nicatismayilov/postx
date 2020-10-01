@@ -10,6 +10,7 @@ import Home from "views/Home";
 import Posts from "views/Posts";
 import PostView from "views/PostView";
 
+import ScrollBar from "components/ScrollBar";
 import Header from "components/Header";
 import Alert from "components/Alert";
 
@@ -49,11 +50,15 @@ const App = (props) => {
 		<div className="app">
 			<Header />
 
-			<Switch>
-				<Route exact path="/" component={Home} />
-				<Route exact path="/posts" component={Posts} />
-				<Route path="/posts/:id" component={PostView} />
-			</Switch>
+			<div style={{ height: "calc(100% - 64px)" }}>
+				<ScrollBar hide={true}>
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route exact path="/posts" component={Posts} />
+						<Route path="/posts/:id" component={PostView} />
+					</Switch>
+				</ScrollBar>
+			</div>
 
 			<Alert type={alertInfo.type} text={alertInfo.text} onDeactivate={() => setAlertActive(false)} active={alertActive} />
 		</div>

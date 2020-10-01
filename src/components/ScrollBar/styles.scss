@@ -1,0 +1,23 @@
+.scrollbar-thumb-vertical {
+  background: linear-gradient(to top, #1a1f3c4b, #11142988);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.scrollbar-thumb-horizontal {
+  background: linear-gradient(to left, #1a1f3c4b, #11142988);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.scrollbar-view {
+  &-horizontal {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &-vertical {
+    display: flex;
+    flex-direction: column;
+  }
+}
