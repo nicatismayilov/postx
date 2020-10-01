@@ -40,6 +40,11 @@ const App = (props) => {
 			setAlertActive(true);
 		});
 
+		eventBus.on("info", (text) => {
+			setAlertInfo({ type: "info", text });
+			setAlertActive(true);
+		});
+
 		eventBus.on("error", (text) => {
 			setAlertInfo({ type: "error", text });
 			setAlertActive(true);
@@ -56,17 +61,15 @@ const App = (props) => {
 
 	return (
 		<div className="app">
-			<Header />
+			<ScrollBar hide={true}>
+				<Header />
 
-			<div style={{ height: "calc(100% - 64px)" }}>
-				<ScrollBar hide={true}>
-					<Switch>
-						<Route exact path="/" component={Home} />
-						<Route exact path="/posts" component={Posts} />
-						<Route path="/posts/:id" component={PostView} />
-					</Switch>
-				</ScrollBar>
-			</div>
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route exact path="/posts" component={Posts} />
+					<Route path="/posts/:id" component={PostView} />
+				</Switch>
+			</ScrollBar>
 
 			<Alert type={alertInfo.type} text={alertInfo.text} onDeactivate={() => setAlertActive(false)} active={alertActive} />
 		</div>

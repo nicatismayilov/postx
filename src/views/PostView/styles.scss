@@ -55,6 +55,10 @@
       outline: none;
     }
 
+    &:not(:last-of-type) {
+      margin-right: 8px;
+    }
+
     &--delete {
       background-color: #cc2f2f;
       color: #fff;

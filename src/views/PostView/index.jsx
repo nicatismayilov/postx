@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { deletePostStart } from "store/posts/actions";
+import eventBus from "eventBus";
+
+import { updatePostStart, deletePostStart } from "store/posts/actions";
 
 import { selectPost } from "store/posts/selectors";
 
@@ -9,13 +11,18 @@ import "./styles.scss";
 
 const PostView = (props) => {
 	const { post, history, match } = props;
-	const { deletePost } = props;
+	const { updatePost, deletePost } = props;
 
 	useEffect(() => {
 		if (!post) {
 			history.push(match.url.split(`/${match.params.id}`)[0]);
 		}
 	}, [post, history, match]);
+
+	const handleUpdate = () => {
+		if (false) updatePost({});
+		else eventBus.dispatch("info", "Update fucntionality has not been implemented yet");
+	};
 
 	const handleDelete = () => {
 		deletePost(post.id);
@@ -32,6 +39,10 @@ const PostView = (props) => {
 					<p className="post__body">{post.body}</p>
 
 					<div className="post__btn-group">
+						<button className="post__btn post__btn--update" onClick={handleUpdate}>
+							Update
+						</button>
+
 						<button className="post__btn post__btn--delete" onClick={handleDelete}>
 							Delete
 						</button>
@@ -47,6 +58,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+	updatePost: (post) => dispatch(updatePostStart(post)),
 	deletePost: (id) => dispatch(deletePostStart(id)),
 });
 
