@@ -29,9 +29,9 @@ export const addPostFailure = (err) => ({
 	payload: err,
 });
 
-export const deletePostStart = (post) => ({
+export const deletePostStart = (id) => ({
 	type: actionTypes.DELETE_POST_START,
-	payload: post,
+	payload: id,
 });
 
 export const deletePostSuccess = (id) => ({

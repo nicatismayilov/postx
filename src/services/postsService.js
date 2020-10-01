@@ -18,10 +18,10 @@ export const addPost = async (post) => {
 	}
 };
 
-export const deletePost = async (post) => {
+export const deletePost = async (id) => {
 	try {
-		await axios.delete(`posts/${post.id}`);
-		return post.id;
+		await axios.delete(`posts/${id}`);
+		return id;
 	} catch (err) {
 		return err;
 	}

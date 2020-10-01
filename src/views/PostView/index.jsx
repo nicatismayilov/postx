@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { deletePostStart } from "store/posts/actions";
@@ -8,8 +8,16 @@ import { selectPost } from "store/posts/selectors";
 import "./styles.scss";
 
 const PostView = (props) => {
-	const { post } = props;
+	const { post, history, match } = props;
 	const { deletePost } = props;
+
+	useEffect(() => {
+		!post && history.push(match.url.split(`/${match.params.id}`)[0]);
+	}, [post, history, match]);
+
+	const handleDelete = () => {
+		deletePost(post.id);
+	};
 
 	return (
 		<div className="post-view">
@@ -22,7 +30,7 @@ const PostView = (props) => {
 					<p className="post__body">{post.body}</p>
 
 					<div className="post__btn-group">
-						<button className="post__btn post__btn--delete" onClick={() => deletePost(post)}>
+						<button className="post__btn post__btn--delete" onClick={handleDelete}>
 							Delete
 						</button>
 					</div>
