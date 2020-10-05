@@ -2,16 +2,19 @@ import { createSelector } from "reselect";
 
 const selectPostsState = (state) => state.posts;
 
-export const selectPosts = createSelector([selectPostsState], (postsState) => Object.values(postsState.posts));
+export const selectPosts = createSelector([selectPostsState], (state) => Object.values(state.posts));
 
-export const selectGetPostsLoading = createSelector([selectPostsState], (postsState) => postsState.getLoading);
+export const selectPostsFiltered = (category) =>
+	createSelector([selectPosts], (posts) => posts.filter((post) => post.category === category));
 
-export const selectAddPostLoading = createSelector([selectPostsState], (postsState) => postsState.postLoading);
+export const selectGetPostsLoading = createSelector([selectPostsState], (state) => state.getLoading);
 
-export const selectUpdatePostLoading = createSelector([selectPostsState], (postsState) => postsState.putLoading);
+export const selectAddPostLoading = createSelector([selectPostsState], (state) => state.postLoading);
 
-export const selectDeletePostLoading = createSelector([selectPostsState], (postsState) => postsState.deleteLoading);
+export const selectUpdatePostLoading = createSelector([selectPostsState], (state) => state.putLoading);
 
-export const selectPostsError = createSelector([selectPostsState], (postsState) => postsState.err);
+export const selectDeletePostLoading = createSelector([selectPostsState], (state) => state.deleteLoading);
 
-export const selectPost = (postId) => createSelector([selectPostsState], (postsState) => postsState.posts[postId]);
+export const selectPostsError = createSelector([selectPostsState], (state) => state.err);
+
+export const selectPost = (postId) => createSelector([selectPostsState], (state) => state.posts[postId]);

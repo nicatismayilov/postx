@@ -7,6 +7,7 @@ import { selectPosts, selectGetPostsLoading } from "store/posts/selectors";
 import Spinner from "components/Spinner";
 import PostOverview from "components/PostOverview";
 import AddPostPopUp from "components/AddPostPopUp";
+import AddCategoryPopUp from "components/AddCategoryPopUp";
 
 import "./styles.scss";
 
@@ -14,6 +15,7 @@ const Posts = (props) => {
 	const { posts, loading } = props;
 
 	const [popUpVisible, setPopUpVisible] = useState(false);
+	const [categoryPopUpVisible, setCategoryPopUpVisible] = useState(false);
 
 	return (
 		<div className="posts-page">
@@ -21,15 +23,23 @@ const Posts = (props) => {
 				<div className="d-flex justify-content-between">
 					<h2 className="posts-page__title">Posts</h2>
 
-					<button className="posts-page__btn" onClick={() => setPopUpVisible(true)}>
-						Add post
-					</button>
+					<div className="d-flex align-items-center">
+						<button className="posts-page__btn" onClick={() => setCategoryPopUpVisible(true)}>
+							Add category
+						</button>
+
+						<button className="posts-page__btn" onClick={() => setPopUpVisible(true)}>
+							Add post
+						</button>
+					</div>
 				</div>
 
 				<div className="posts-page__content">{loading ? <Spinner /> : renderPosts(posts)}</div>
 			</div>
 
 			{popUpVisible && <AddPostPopUp closePopUp={() => setPopUpVisible(false)} />}
+
+			{categoryPopUpVisible && <AddCategoryPopUp closePopUp={() => setCategoryPopUpVisible(false)} />}
 		</div>
 	);
 };

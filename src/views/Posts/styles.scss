@@ -16,9 +16,13 @@
     padding: 10px 15px;
 
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
 
     transition: all 150ms;
+
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
 
     &:hover {
       background-color: #e1dfdf;

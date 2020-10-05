@@ -19,8 +19,10 @@ import { getAllPosts, addPost, updatePost, deletePost } from "services/postsServ
 
 import convertArrayToMap from "utils/convertArrayToMap";
 
+const categories = ["category 1", "category 2"];
+
 export function* fetchPostsStart() {
-	yield takeLatest(FETCH_POSTS_START, fetchPostsStartAsync);
+	yield takeLatest(FETCH_POSTS_START, fetchPostsAsync);
 }
 
 export function* addPostStart() {
@@ -35,10 +37,16 @@ export function* deletePostStart() {
 	yield takeLatest(DELETE_POST_START, deletePostAsync);
 }
 
-function* fetchPostsStartAsync() {
+function* fetchPostsAsync() {
 	try {
 		const res = yield call(getAllPosts);
-		yield put(fetchPostsSuccess(convertArrayToMap(res.data)));
+		const posts = res.data.map((post) => {
+			const idx = Math.floor(Math.random() * 2);
+			post.category = categories[idx];
+			return post;
+		});
+
+		yield put(fetchPostsSuccess(convertArrayToMap(posts)));
 	} catch (err) {
 		yield put(fetchPostsFailure("Error occured while loading posts"));
 	}
